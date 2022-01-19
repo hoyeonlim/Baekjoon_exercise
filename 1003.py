@@ -5,7 +5,7 @@ def dp(x):
     if x == 0:
         return print(arr0[0], arr1[0], sep=" ")
     elif x == 1:
-        return print(arr0[1], ar₩r1[1], sep=" ")
+        return print(arr0[1], arr1[1], sep=" ")
     else:
         for i in range(2, x+1):
             arr0.append(arr0[i-1] + arr0[i-2])
