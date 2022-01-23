@@ -13,3 +13,4 @@ for k in range(n-2, -1, -1):
     else:
         continue
 print(cnt)
+#EOF
