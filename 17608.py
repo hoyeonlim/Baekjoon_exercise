@@ -14,3 +14,4 @@ for k in range(n-2, -1, -1):
         continue
 print(cnt)
 #EOF
+#2022.01.24
