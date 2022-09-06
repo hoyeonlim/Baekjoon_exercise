@@ -1,7 +1,4 @@
-a = [1,2,3]
-b= []
-b = a.copy()
-b.clear()
-a.remove(1)
-b=a.copy()
-print(b, a, sep='\n')
+i = 20
+f = 123456.789E-3
+print('%d\n%d' % (i,i), end ='/')
+print('%.3f' % f)
