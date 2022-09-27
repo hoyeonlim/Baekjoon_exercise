@@ -1,37 +1,34 @@
-from collections import deque
 from sys import stdin
+from heapq import heappop, heappush
 
-def bfs():
-    while queue:
-        order = queue.popleft()
-        for i in graph[order]:
-            if i not in queue:
-                queue.append(i)
-            ans[i] = min(ans[i], weight[order][i] + ans[order])
+input = stdin.readline
+V, e = map(int, input().split())
+k = int(input())
+graph = [[] for _ in range(V + 1)]
+ans = [3000001 for _ in range(V + 1)]
+
+for i in range(e):
+    u, v, w = map(int, input().split())
+    graph[u].append([v, w])
 
 
-v, e = map(int, stdin.readline().split())
-k = int(stdin.readline())
-inf = 9999999
-ans = [9999999 for _ in range(v + 1)]
-queue = deque([])
-queue.append(k)
-ans[k] = 0
+def dikstra(start):
+    ans[start] = 0
+    heap = []
+    heappush(heap, [0 ,start])
+    while heap:
+        w, d = heappop(heap)
+        if ans[d] < w:
+            continue
+        for j, k in graph[d]:
+            if ans[j] > ans[d] + k:
+                ans[j] = ans[d] + k
+                heappush(heap, [k, j])
 
-graph = [[] for _ in range(v + 1)]
-weight = [[inf for _ in range(v + 1)] for _ in range(v + 1)]
-visited = [False] * (v + 1)
+dikstra(k)
 
-for i in range (e):
-    a, b, c = map(int, stdin.readline().split())
-    graph[a].append(b)
-    weight[a][b] = c
-
-bfs()
-
-for i in range(1, v + 1):
-    if i == k:
-        ans[i] = 0
-    if ans[i] == inf:
-        ans[i] = 'INF'
-    print(ans[i])
+for x in range(1, V+1):
+    if ans[x] == 3000001:
+        print("INF")
+    else:
+        print(ans[x])
