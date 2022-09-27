@@ -23,12 +23,9 @@ def dikstra(start):
         for j, k in graph[d]:
             if ans[j] > ans[d] + k:
                 ans[j] = ans[d] + k
-                heappush(heap, [k, j])
+                heappush(heap, [ans[j], j])
 
 dikstra(k)
 
 for x in range(1, V+1):
-    if ans[x] == 3000001:
-        print("INF")
-    else:
-        print(ans[x])
+    print("INF"  if ans[x] == 3000001 else ans[x])
